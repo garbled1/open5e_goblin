@@ -120,7 +120,7 @@ def basemod5e(stat):
 
 
 def cr_to_xp(cr):
-    """Given a CR, print XP"""
+    """Given a CR, return XP"""
 
     crxp = {
         "0": "10",
@@ -250,7 +250,7 @@ def make_md_from_json(jdata):
         if len(jdata['skills']) > 0:
             skilltext = ''
             for sk in jdata['skills'].keys():
-                skilltext = skilltext + sk.ucfirst() + ' ' + numplus(jdata['skills'][sk]) + ', '
+                skilltext = skilltext + sk.capitalize() + ' ' + numplus(jdata['skills'][sk]) + ', '
             doc.writeTextLine(f'{doc.addBoldedText("Skills") + " " + skilltext}')
             
         vulns = {
@@ -279,12 +279,12 @@ def make_md_from_json(jdata):
         for action in jdata['actions']:
             doc.writeTextLine(f'{doc.addBoldedText(action["name"] + ".") + " " + rollable_text(action["desc"])}')
 
-        if jdata['reactions'].len() > 0:
+        if len(jdata['reactions']) > 0:
             doc.addHeader(2, 'Reactions')
             for action in jdata['reactions']:
                 doc.writeTextLine(f'{doc.addBoldedText(action["name"] + ".") + " " + rollable_text(action["desc"])}')
 
-        if jdata['legendary_actions'].len() > 0:
+        if len(jdata['legendary_actions']) > 0:
             doc.addHeader(2, 'Legendary Actions')
             doc.writeTextLine(jdata['legendary_desc'])
             for action in jdata['legendary_actions']:
@@ -292,6 +292,8 @@ def make_md_from_json(jdata):
 
 
         # Now print dat
+        print()
+        print()
         for line in doc.document_data_array:
             print(line)
 
