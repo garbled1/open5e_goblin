@@ -1,0 +1,4 @@
+PyInquirer
+rich
+requests
+git+https://github.com/Nicceboy/python-markdown-generator
